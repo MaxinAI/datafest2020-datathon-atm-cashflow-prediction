@@ -1,18 +1,21 @@
 # ATM cashflow prediction
 
-# ARIMA Model
-will be added soon
+## ARIMA Model
 
-# LSTM Model
+At the very last moment we decided to use ARIMA(1,1,1) as the training other models took lots of time. By observing model statistics we conclude that the model is valid. However, it's not complex enough to extract all the information from the noise term. Hence, we have left some useful information in the error which have could been harnessed for more accurate forecasting.
+
+## LSTM Model
+
 ## EDA
+
 Time series data had positive trends with different magnitude per year/month/day. But the target variable had different time series properties across different ATM, hence decided to use LSTM network which is able to predict on different targets which differ by some features. 
 
 ## Model
+
 We applied LSTM model with the features that were available. Time series values of ATM total withdrawal (scaled) and ID of ATM. We used 7 day window for LSTM.  2017-2018 is for training set and 2019 for test set.  
 The MAE score on train set was 0.0700 and test set was 0.0850. 
 
-
-# Some Insights
+## Some Insights
 
 - Some ATM's didn't have all records. Missing records mean that they didn't work for given days. We assume that they stopped working in given days. In case they end before 2019-12-31 we could remove them from consideration, because they may never function in 2020.
 - Some ATM's does have 0.0 values for several consecutive days, which means that they didn't have money for these days or stopped working temporarily (continued after fixing or filling money in). I think that prediction of such problems isn't easy since they are unexpected events. The option is to fill these values with model predictions (do some augmentation with independent time series models).
